@@ -4940,6 +4940,8 @@ function buildChapterSupports(entry){
 }
 
 function buildChapterAudit(entry){
+  // Editorial notes are for us, not readers. Add ?editor=1 to the URL to see them.
+  if(!/[?&]editor=1\b/.test(location.search)) return '';
   const audit=SITE_STRUCTURE.entryAudits && SITE_STRUCTURE.entryAudits[entry.id] ? SITE_STRUCTURE.entryAudits[entry.id] : null;
   if(!audit || !Array.isArray(audit.items) || !audit.items.length) return '';
   const tierClassMap={verified:'badge-verified',highconf:'badge-highconf',contested:'badge-contested',symbolic:'badge-symbolic',unknown:'badge-unknown'};
